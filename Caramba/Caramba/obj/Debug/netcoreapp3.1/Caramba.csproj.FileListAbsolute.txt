@@ -1,0 +1,14 @@
+C:\Users\damia\Source\Repos\Caramba-CarSharing\Caramba\Caramba\bin\Debug\netcoreapp3.1\Caramba.exe
+C:\Users\damia\Source\Repos\Caramba-CarSharing\Caramba\Caramba\bin\Debug\netcoreapp3.1\Caramba.deps.json
+C:\Users\damia\Source\Repos\Caramba-CarSharing\Caramba\Caramba\bin\Debug\netcoreapp3.1\Caramba.runtimeconfig.json
+C:\Users\damia\Source\Repos\Caramba-CarSharing\Caramba\Caramba\bin\Debug\netcoreapp3.1\Caramba.runtimeconfig.dev.json
+C:\Users\damia\Source\Repos\Caramba-CarSharing\Caramba\Caramba\bin\Debug\netcoreapp3.1\Caramba.dll
+C:\Users\damia\Source\Repos\Caramba-CarSharing\Caramba\Caramba\bin\Debug\netcoreapp3.1\Caramba.pdb
+C:\Users\damia\Source\Repos\Caramba-CarSharing\Caramba\Caramba\obj\Debug\netcoreapp3.1\Caramba.AssemblyInfoInputs.cache
+C:\Users\damia\Source\Repos\Caramba-CarSharing\Caramba\Caramba\obj\Debug\netcoreapp3.1\Caramba.AssemblyInfo.cs
+C:\Users\damia\Source\Repos\Caramba-CarSharing\Caramba\Caramba\obj\Debug\netcoreapp3.1\Caramba.csproj.CoreCompileInputs.cache
+C:\Users\damia\Source\Repos\Caramba-CarSharing\Caramba\Caramba\obj\Debug\netcoreapp3.1\Caramba.dll
+C:\Users\damia\Source\Repos\Caramba-CarSharing\Caramba\Caramba\obj\Debug\netcoreapp3.1\Caramba.pdb
+C:\Users\damia\Source\Repos\Caramba-CarSharing\Caramba\Caramba\obj\Debug\netcoreapp3.1\Caramba.genruntimeconfig.cache
+C:\Users\damia\Source\Repos\Caramba-CarSharing\Caramba\Caramba\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+C:\Users\damia\Source\Repos\Caramba-CarSharing\Caramba\Caramba\obj\Debug\netcoreapp3.1\Caramba.csproj.CopyComplete

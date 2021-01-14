@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "tziXfCI4ablkxfJ5Uss4hnCZH5SvJrgS02kgbI+qHh4eVmN7VTGH1Lf60T/sUw/vXU0+3iFzL4vIjizF1XeV7w==",
+  "dgSpecHash": "sF4ya4oplWd3lbgUZabLRnZRneEazdCusw2GNXVtHEcZrKJd/fsjei3yrWWOWYiLAstBDZOmVNHOKFMITyJaKQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\damia\\Source\\Repos\\Caramba-CarSharing\\Caramba\\Caramba\\Caramba.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\damia\\.nuget\\packages\\newtonsoft.json\\12.0.3\\newtonsoft.json.12.0.3.nupkg.sha512"
+  ],
   "logs": []
 }
