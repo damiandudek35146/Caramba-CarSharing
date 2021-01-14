@@ -12,3 +12,4 @@ C:\Users\damia\Source\Repos\Caramba-CarSharing\Caramba\Caramba\obj\Debug\netcore
 C:\Users\damia\Source\Repos\Caramba-CarSharing\Caramba\Caramba\obj\Debug\netcoreapp3.1\Caramba.genruntimeconfig.cache
 C:\Users\damia\Source\Repos\Caramba-CarSharing\Caramba\Caramba\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\damia\Source\Repos\Caramba-CarSharing\Caramba\Caramba\obj\Debug\netcoreapp3.1\Caramba.csproj.CopyComplete
+C:\Users\damia\Source\Repos\Caramba-CarSharing\Caramba\Caramba\obj\Debug\netcoreapp3.1\Caramba.csprojAssemblyReference.cache

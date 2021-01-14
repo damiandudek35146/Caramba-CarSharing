@@ -26,7 +26,6 @@ namespace Caramba.Models
          string email,
          string password)
         {
-            ID = 1;
             FirstName = firstName;
             LastName = lastName;
             LoginName = loginName;

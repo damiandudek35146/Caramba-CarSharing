@@ -11,5 +11,6 @@ namespace Caramba.Models
         public int ViehicleID { get; set; }
         public int RentTime { get; set; }
         public float RentPrice { get; set; }
+        public bool isActivateNow { get; set; }
     }
 }
