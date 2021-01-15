@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.IO;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace Caramba
 {
@@ -12,31 +13,18 @@ namespace Caramba
     {
         
         //public static object WindowHandler { get;  set; }
-        private static string Hello()
+        private static string Hello(string info)
         {
             Console.Clear();
+            Console.WriteLine(info);
             Console.WriteLine("*****Caramba******\n Welcome in best car sharing system :)\n");
 
-            Console.WriteLine("\nMENU:\n1. Log in\n2. Sign in\n3.Credits\n4.Exit\n\nYour choose(1-4):");
-            string Choose = Console.ReadLine();
-            return Choose;
+            Console.WriteLine("\nMENU:\n1. Log in\n2. Sign in\n3.Credits\n4.Exit\n\nYour choice(1-4):");
+            string choice = Console.ReadLine();
+            return choice;
         }
-        private static List<User> GetUsersData()
-        {
-            string path = Path.Combine(Environment.CurrentDirectory, @"Database\Users.txt");
-            path = path.Replace(@"\bin\Debug\netcoreapp3.1\", @"\");
-            string result;
-            using (StreamReader sr = new StreamReader(path))
-            {
-                result = sr.ReadToEnd();
-            }
-            var _ListOfUsers = JsonConvert.DeserializeObject<List<User>>(result);
-            if(_ListOfUsers==null)
-            {
-                _ListOfUsers = new List<User>();
-            }
-            return _ListOfUsers;
-        }
+        
+
         private static User Form()
         {
             string _firstName, _lastName, _loginName, _email;
@@ -59,7 +47,7 @@ namespace Caramba
                 }
                 Console.WriteLine("Login:\n");
                 _loginName = Console.ReadLine();
-                var _users = GetUsersData();
+                var _users = GetUserInfoHelper.GetUsersData();
                 var query = _users.Select(x => x.LoginName).ToList();
                 foreach (string itm in query)
                 {
@@ -70,103 +58,170 @@ namespace Caramba
             Console.Clear();
             Console.WriteLine("Email:\n");
             _email = Console.ReadLine();
+            _email.IsEmail();
             Console.Clear();
             Console.WriteLine("Password:\n");
-            _password = MaskingPassword();
-            
-            
-
-
+            _password = LoginHelper.MaskingPassword();
             var User1 = new User(_firstName, _lastName, _loginName, _email, _password);
             return User1;
         }
-        private static string MaskingPassword()
+        public static void MainPanel (User user)
         {
-            var password = string.Empty;
-            ConsoleKey key;
-            do
-            {
-                var keyInfo = Console.ReadKey(intercept: true);
-                key = keyInfo.Key;
-
-                if (key == ConsoleKey.Backspace && password.Length > 0)
-                {
-                    Console.Write("\b \b");
-                    password = password[0..^1];
-                }
-                else if (!char.IsControl(keyInfo.KeyChar))
-                {
-                    Console.Write("*");
-                    password += keyInfo.KeyChar;
-                }
-            } while (key != ConsoleKey.Enter);
-            return password;
-
-        }
-
-        private static void MainPanel (User user)
-        {
-            string choose;
-            Console.Clear();
-            Console.WriteLine(" Welcome in Your Panel, what you want?\n");
-            Console.WriteLine($"Your profile:\n\tFirst name: {user.FirstName}\n\tLast name: {user.LastName}\n\tYour wallet: ${user.AmountOfMoney}");
-
-            Console.WriteLine("\nMENU:\n1. Add Money\n2. Edit Account\n3. Rent a car\n4. My Reservations \n" +
-                "5. Return a Car\n6. Log Out\n7. Deleta Account\n\nYour choose(1-7):");
-
-
-            choose =Console.ReadLine();
-        }
-
-        private static void LogUser(string login)
-        {
-            var users = GetUsersData();
-            User user = users.Select(x => x).Where(y => y.LoginName == login).First();
-            user.IsLogged = true;
-            MainPanel(user);
-        }
-        private static void LogIn()
-        {
-            bool isWorngPassword = false;
-            string login;
-            var password = string.Empty;
-            while (!isWorngPassword)
+            string choice;
+            while (true)
             {
                 Console.Clear();
-                Console.WriteLine("****LOG IN***\n");
-                if(isWorngPassword)
-                Console.WriteLine("\nLogin or password is inncorrect, try again...\n");
+                Console.WriteLine(" Welcome in Your Panel, what you want?\n");
+                Console.WriteLine($"Your profile:\n\tUser number: {user.ID}\n\tFirst name: {user.FirstName}\n\tLast name: {user.LastName}\n\tYour wallet: ${user.AmountOfMoney}");
 
-                Console.WriteLine("Login:");
-                login = Console.ReadLine();
-                Console.WriteLine("Password:");
-                password = MaskingPassword();
-                var users = GetUsersData();
-                var query = users.Select(x => new { x.LoginName, x.Password, x.ID }).Where(y => y.LoginName == login).ToList();
-                if (query.Count > 0)
+                Console.WriteLine("\nMENU:\n1. Add Money\n2. Edit Account\n3. Rent a car\n4. My Reservations \n" +
+                "5. Return a Car\n6. Log Out\n7. Delete Account\n\nYour choice(1-7):");
+                choice = Console.ReadLine();
+                switch (choice)
                 {
-                    LogUser(login);
-                }
-                else
-                {
-                    isWorngPassword = true;
+                    case "1":
+                        AddMoney(user);
+                        break;
+                    case "2":
+                        EditAccount(user);
+                        break;
+                    case "3":
+                        RentCar();
+                        break;
+                    case "4":MyReservations();
+                        break;
+                    case "5":ReturnCar();
+                        ;
+                        break;
+                    case "6":
+                        user.IsLogged = false;
+                        UpdateUserHelper.UpdateUser(user);
+                        Start("You have been logged out");
+                        ;
+                        break;
+                    case "7":
+                        DeleteAccount(user);
+                        Start("Your account has been deleted");
+                        ;
+                        break;
                 }
             }
-            
-
         }
 
-
-        private static void Register()
+        private static void DeleteAccount(User user)
         {
-            var user = Form();
-            List<User> users = GetUsersData();
+            var users = GetUserInfoHelper.GetUsersData();
+            var oldUser = users.Single(x => x.ID == user.ID);
+            users.Remove(oldUser);
+            var sortedList = users.OrderBy(o => o.ID).ToList();
+
             string path = Path.Combine(Environment.CurrentDirectory, @"Database\Users.txt");
             path = path.Replace(@"\bin\Debug\netcoreapp3.1\", @"\");
 
+            string newJson = JsonConvert.SerializeObject(sortedList);
+            using (StreamWriter sw = File.CreateText(path))
+            {
+                sw.WriteLine(newJson);
+                sw.Close();
+            }
+        }
+
+        private static void ReturnCar()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void MyReservations()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void RentCar()
+        {
+            throw new NotImplementedException();
+        }
+
+        private static void EditAccount(User user)
+        {
+            Console.Clear();
+            Console.WriteLine("");
+            string _firstName, _lastName, _email;
+
+            var _password = String.Empty;
+            Console.Clear();
+            Console.WriteLine("New first name:\n");
+            _firstName = Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("New last name:\n");
+            _lastName = Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("New email:\n");
+            _email = Console.ReadLine();
+            Console.Clear();
+            Console.WriteLine("New Password:\n");
+            _password = LoginHelper.MaskingPassword();
+            var updatedUser = new User(_firstName, _lastName, user.LoginName, _email, _password);
+            updatedUser.ID = user.ID;
+            updatedUser.AmountOfMoney = user.AmountOfMoney;
+            updatedUser.IsLogged = user.IsLogged;
+            updatedUser.Orders = user.Orders;
+
+            UpdateUserHelper.UpdateUser(updatedUser);
+            MainPanel(updatedUser);
+        }
+
+        private static void AddMoney(User user)
+        {
+            string input = String.Empty;
+            bool badFormat = true;
+            while(badFormat)
+            {
+                Console.Clear();
+                Console.WriteLine("How much money you want to add? (use a comma for hundredths )");
+                input = Console.ReadLine();
+                if (input.Contains(','))
+                {
+                    badFormat = false;
+                }
+                float result=6;
+                if (float.TryParse(input, out result))
+                {
+                    badFormat = false;
+                }
+            }
+            float newMoney = float.Parse(input);
+            float rounded = (float)(Math.Round((double)newMoney, 2));
+
+            user.AmountOfMoney += rounded;
+            UpdateUserHelper.UpdateUser(user);
+            Console.WriteLine($"You added ${rounded} to account. \n Press Enter to back to main menu...");
+            Console.ReadLine();
+            MainPanel(user);
+        }
+
+
+        
+        private static void Register()
+        {
+            var user = Form();
+            List<User> users = GetUserInfoHelper.GetUsersData();
+            string path = Path.Combine(Environment.CurrentDirectory, @"Database\Users.txt");
+            path = path.Replace(@"\bin\Debug\netcoreapp3.1\", @"\");
+            User newesUser;
+            if(users.Count>0)
+            {
+                newesUser = users.OrderByDescending(u => u.ID).FirstOrDefault();
+            }
+            else
+            {
+                newesUser = new User();
+                newesUser.ID = 0;
+            }
+            
+
             if (users.Count != 0)
             {
-                user.ID = users.Count+1;
+                user.ID = newesUser.ID+1;
                 users.Add(user);
                 string newJson = JsonConvert.SerializeObject(users);
                 using (StreamWriter sw = File.CreateText(path))
@@ -188,17 +243,17 @@ namespace Caramba
                 }
             }
         }
-        static void Main(string[] args)
+        private static void Start(string info)
         {
-            string Choose = String.Empty;
-            while (Choose != "4")
+            string choice = String.Empty;
+            while (choice != "4")
             {
-                Choose = Hello();
-                switch (Choose)
+                choice = Hello(info);
+                switch (choice)
                 {
                     case "1":
                         {
-                            LogIn();
+                            LoginHelper.LogIn();
                         }
                         break;
                     case "2":
@@ -210,6 +265,10 @@ namespace Caramba
                         break;
                 }
             }
+        }
+        static void Main(string[] args)
+        {
+            Start("");
         }
 
 

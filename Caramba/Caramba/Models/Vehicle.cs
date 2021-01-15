@@ -16,6 +16,5 @@ namespace Caramba.Models
         }
         public int ID { get; set; }
         public int CurrentOwnerID { get; set; }
-        public bool IsRentable { get; set; }
     }
 }
