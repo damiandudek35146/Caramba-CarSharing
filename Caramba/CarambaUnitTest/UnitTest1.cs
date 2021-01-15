@@ -4,15 +4,19 @@ namespace CarambaUnitTest
 {
     public class Tests
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
         [Test]
-        public void Test1()
+        public void RegisterUser()
         {
-            Assert.Pass();
+            // Arrange
+            double beginningBalance = 11.99;
+            double debitAmount = 4.55;
+            double expected = 7.44;
+
+            // Act
+
+
+            // Assert
+            Assert.AreEqual(expected, 0.001, "Account not debited correctly");
         }
     }
 }

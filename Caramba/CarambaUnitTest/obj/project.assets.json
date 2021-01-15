@@ -4623,24 +4623,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\damia\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Optiplex\\.nuget\\packages\\": {},
+    "C:\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\damia\\Source\\Repos\\Caramba-CarSharing\\Caramba\\CarambaUnitTest\\CarambaUnitTest.csproj",
+      "projectUniqueName": "C:\\Users\\Optiplex\\source\\repos\\Caramba-CarSharing\\Caramba\\CarambaUnitTest\\CarambaUnitTest.csproj",
       "projectName": "CarambaUnitTest",
-      "projectPath": "C:\\Users\\damia\\Source\\Repos\\Caramba-CarSharing\\Caramba\\CarambaUnitTest\\CarambaUnitTest.csproj",
-      "packagesPath": "C:\\Users\\damia\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\damia\\Source\\Repos\\Caramba-CarSharing\\Caramba\\CarambaUnitTest\\obj\\",
+      "projectPath": "C:\\Users\\Optiplex\\source\\repos\\Caramba-CarSharing\\Caramba\\CarambaUnitTest\\CarambaUnitTest.csproj",
+      "packagesPath": "C:\\Users\\Optiplex\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Optiplex\\source\\repos\\Caramba-CarSharing\\Caramba\\CarambaUnitTest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\damia\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\Optiplex\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"

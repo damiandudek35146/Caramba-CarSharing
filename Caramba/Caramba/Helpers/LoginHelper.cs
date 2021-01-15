@@ -1,4 +1,5 @@
-﻿using Caramba.Models;
+﻿using Caramba.Helpers;
+using Caramba.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,7 +48,7 @@ namespace Caramba
             User user = users.Select(x => x).Where(y => y.LoginName == login).First();
             user.IsLogged = true;
             UpdateUserHelper.UpdateUser(user);
-            Program.MainPanel(user);
+            PanelHelper.MainPanel(user);
         }
         public static string MaskingPassword()
         {
