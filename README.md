@@ -1,2 +1,2 @@
 # Caramba-CarSharing
-This is a university project. System for retnting cars.
+Console application system for retnting cars. Database in txt file as json.
